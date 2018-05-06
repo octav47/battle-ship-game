@@ -20,6 +20,7 @@ browserSync({
     ui: {
         port: 3001,
     },
+    open: false,
     server: {
         baseDir: 'src',
 
