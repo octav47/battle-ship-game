@@ -1,24 +1,28 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
-import Root from './components/Root'
+import Root from './Root'
+
+import configureStore from './store'
 
 // require('./favicon.ico') // Tell webpack to load favicon.ico
 
+const store = configureStore()
+
 render(
     <AppContainer>
-        <Root />
+        <Root store={store} />
     </AppContainer>,
     document.getElementById('app'),
 )
 
 if (module.hot) {
-    module.hot.accept('./components/Root', () => {
-        const NewRoot = require('./components/Root').default
+    module.hot.accept('./Root', () => {
+        const NewRoot = require('./Root').default
 
         render(
             <AppContainer>
-                <NewRoot />
+                <NewRoot store={store} />
             </AppContainer>,
             document.getElementById('app'),
         )

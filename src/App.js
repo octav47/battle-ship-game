@@ -1,7 +1,7 @@
 import React from 'react'
-import Grid from './Grid'
+import { Grid } from './components'
 
-const Root = () => {
+const App = () => {
     return (
         <div>
             <Grid
@@ -11,4 +11,4 @@ const Root = () => {
     )
 }
 
-export default Root
+export default App
