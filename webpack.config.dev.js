@@ -7,8 +7,12 @@ module.exports = {
         extensions: ['*', '.js', '.jsx', '.json'],
     },
     entry: [
+        './src/webpack-public-path',
+        'react-hot-loader/patch',
+        'webpack-hot-middleware/client?reload=true',
         path.resolve(__dirname, './src/index.js'),
     ],
+    devtool: 'eval-source-map',
     target: 'web',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -16,6 +20,7 @@ module.exports = {
         filename: 'bundle.js',
     },
     plugins: [
+        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: 'src/index.ejs',
             minify: {
@@ -24,7 +29,6 @@ module.exports = {
             },
             inject: true,
         }),
-
     ],
     module: {
         rules: [
