@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import shipReducer from './shipReducer'
+import gameReducer from './gameReducer'
 
 const rootReducer = combineReducers({
-    ships: shipReducer,
+    game: gameReducer,
 })
 
 export default rootReducer
