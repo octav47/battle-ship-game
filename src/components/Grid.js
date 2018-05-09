@@ -11,7 +11,9 @@ class Grid extends React.Component {
     }
 
     render () {
-        const { width, height } = this.props
+        const { width, height, grid } = this.props
+
+        console.log(grid)
 
         const rows = []
 
@@ -23,7 +25,8 @@ class Grid extends React.Component {
                     <Cell
                         key={j}
                         x={i}
-                        y={j} />,
+                        y={j}
+                        value={grid && grid[i][j]}/>,
                 )
             }
 
@@ -38,6 +41,14 @@ class Grid extends React.Component {
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        width: state.game.width,
+        height: state.game.height,
+        grid: state.game.grid,
+    }
+}
+
 const mapDispatchToProps = (dispatch, ...args) => {
     return {
         initShips: (width, height) => {
@@ -46,4 +57,4 @@ const mapDispatchToProps = (dispatch, ...args) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Grid)
+export default connect(mapStateToProps, mapDispatchToProps)(Grid)
