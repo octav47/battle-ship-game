@@ -13,8 +13,8 @@ module.exports = {
             Consts: path.resolve(__dirname, './src/consts'),
             Actions: path.resolve(__dirname, './src/actions'),
             Reducers: path.resolve(__dirname, './src/reducers'),
-            Utils: path.resolve(__dirname, './src/utils')
-        }
+            Utils: path.resolve(__dirname, './src/utils'),
+        },
     },
     entry: [
         './src/webpack-public-path',
