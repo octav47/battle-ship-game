@@ -1,13 +1,14 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { initShips } from 'Actions/shipActions'
 import { VictoryPopup } from 'Components/'
 
 class GameStatusHandler extends React.Component {
     handleRestartGame = () => {
-        const { width, height, restartGame } = this.props
+        const { restartGame } = this.props
 
-        restartGame(width, height)
+        restartGame()
     }
 
     render () {
@@ -23,22 +24,34 @@ class GameStatusHandler extends React.Component {
     }
 }
 
+GameStatusHandler.propTypes = {
+    victory: PropTypes.bool,
+    restartGame: PropTypes.func,
+}
+
 const mapStateToProps = state => {
     const { I, L, Dot1, Dot2 } = state.game
 
     return {
         width: state.game.width,
         height: state.game.height,
-        victory: !(I.alive || L.alive || Dot1.alive || Dot2.alive)
+        victory: !(I.alive || L.alive || Dot1.alive || Dot2.alive),
     }
 }
 
-const mapDispatchToProps = dispatch => {
+const mergeProps = (stateProps, { dispatch }) => {
+    const { width, height, victory } = stateProps
+
+    const restartGame = () => {
+        dispatch(initShips(width, height))
+    }
+
     return {
-        restartGame: (width, height) => {
-            dispatch(initShips(width, height))
-        }
+        width,
+        height,
+        victory,
+        restartGame,
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(GameStatusHandler)
+export default connect(mapStateToProps, null, mergeProps)(GameStatusHandler)

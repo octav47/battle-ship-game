@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import styles from 'Styles/VictoryPopup.sass'
 
@@ -15,6 +16,10 @@ const VictoryPopup = ({ onRestart }) => {
             </div>
         </div>
     )
+}
+
+VictoryPopup.propTypes = {
+    onRestart: PropTypes.func,
 }
 
 export default VictoryPopup

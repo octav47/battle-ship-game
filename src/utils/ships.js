@@ -1,3 +1,4 @@
+/* eslint-disable max-depth */
 import { getRandomInt } from 'Utils/customUtils'
 
 const directions = [[0, -1], [1, 0], [0, 1], [-1, 0]] // top right bottom left
@@ -16,10 +17,7 @@ const getEmptyBlock = ({ grid, width, height, size }) => {
                 for (let k = 0; k < size[0]; k++) {
                     if (checkFlag) {
                         for (let l = 0; l < size[1]; l++) {
-                            console.log(i, j, `grid[${i + k}][${j + l}]`, grid[i + k][j + l])
-
                             if (grid[i + k][j + l].ship) {
-                                console.log('break!', grid[i + k][j + l])
                                 checkFlag = false
                                 break
                             }
@@ -43,7 +41,7 @@ const getEmptyBlock = ({ grid, width, height, size }) => {
     return emptyBlocks[getRandomInt(0, emptyBlocks.length - 1)]
 }
 
-const getIBlock = ({ grid, width, height }) => {
+const getIBlock = ({ grid }) => {
     const iFirstPoint = [getRandomInt(0, 5), getRandomInt(0, 5)]
     const iDirection = getRandomInt(0, 100) > 50 ? directions[1] : directions[2]
     const area = []
@@ -86,8 +84,8 @@ const getLBlock = ({ grid, width, height }) => {
     }
 
     for (let i = 0; i < 3; i++) {
-        let dx = direction ? 0 : i
-        let dy = direction ? i : 0
+        const dx = direction ? 0 : i
+        const dy = direction ? i : 0
 
         for (let k = -1; k < 2; k++) {
             for (let l = -1; l < 2; l++) {

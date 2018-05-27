@@ -1,7 +1,8 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styles from 'Styles/Cell.sass'
 
-const Cell = ({ x, y, value, hit, onClick }) => {
+const Cell = ({ value, hit, onClick }) => {
     const classNames = [styles.cell]
 
     if (hit) {
@@ -21,6 +22,12 @@ const Cell = ({ x, y, value, hit, onClick }) => {
             className={classNames.join(' ')}
             onClick={onClick} />
     )
+}
+
+Cell.propTypes = {
+    value: PropTypes.object,
+    hit: PropTypes.bool,
+    onClick: PropTypes.func,
 }
 
 export default Cell

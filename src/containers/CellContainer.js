@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { hitCell } from 'Actions/shipActions'
@@ -7,16 +8,27 @@ import { Cell } from 'Components/'
 
 class CellContainer extends React.Component {
     handleHit = () => {
-        const { x, y, value, hitCell } = this.props
+        const { handleHit } = this.props
 
-        hitCell(x, y, value.ship)
+        handleHit()
     }
 
     render () {
+        const { value, hit } = this.props
+
         return (
-            <Cell {...this.props} onClick={this.handleHit} />
+            <Cell
+                value={value}
+                hit={hit}
+                onClick={this.handleHit} />
         )
     }
+}
+
+CellContainer.propTypes = {
+    value: PropTypes.object,
+    hit: PropTypes.bool,
+    handleHit: PropTypes.func,
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -25,12 +37,28 @@ const mapStateToProps = (state, ownProps) => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-        hitCell: (x, y, ship) => {
+const mergeProps = (stateProps, { dispatch }, ownProps) => {
+    const {
+        x,
+        y,
+        value,
+    } = ownProps
+
+    const handleHit = () => {
+        if (value) {
+            const { ship } = value
+
             dispatch(hitCell({ x, y, ship }))
-        },
+        }
+    }
+
+    return {
+        x,
+        y,
+        value,
+        ...stateProps,
+        handleHit,
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CellContainer)
+export default connect(mapStateToProps, null, mergeProps)(CellContainer)

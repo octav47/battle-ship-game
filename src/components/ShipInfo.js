@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import styles from 'Styles/ShipInfo.sass'
@@ -49,6 +50,13 @@ const ShipInfo = props => {
             </div>
         </div>
     )
+}
+
+ShipInfo.propTypes = {
+    I: PropTypes.object,
+    L: PropTypes.object,
+    Dot1: PropTypes.object,
+    Dot2: PropTypes.object,
 }
 
 const mapStateToProps = state => {
