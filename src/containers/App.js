@@ -1,7 +1,8 @@
 import React from 'react'
-import { Grid, ShipInfo, GameStatusHandler } from './'
+import { ShipInfo } from 'Components/'
+import { Grid, GameStatusHandler } from 'Containers/'
 
-import styles from './styles/App.sass'
+import styles from 'Styles/App.sass'
 
 const App = () => {
     return (

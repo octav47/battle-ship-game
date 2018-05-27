@@ -1,53 +1,26 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import styles from 'Styles/Cell.sass'
 
-import { hitCell } from '../actions/shipActions'
+const Cell = ({ x, y, value, hit, onClick }) => {
+    const classNames = [styles.cell]
 
-import styles from './styles/Cell.sass'
-
-class Cell extends React.Component {
-    handleHit = () => {
-        const { x, y, value, hitCell } = this.props
-
-        hitCell(x, y, value.ship)
-    }
-
-    render () {
-        const { x, y, value, hit } = this.props
-        const classNames = [styles.cell]
-
-        if (hit) {
-            classNames.push(styles.hit)
-
-            if (value && value.ship) {
-                classNames.push(styles.ship)
-            }
-        }
+    if (hit) {
+        classNames.push(styles.hit)
 
         if (value && value.ship) {
             classNames.push(styles.ship)
         }
-
-        return (
-            <div
-                className={classNames.join(' ')}
-                onClick={this.handleHit} />
-        )
     }
+
+    if (value && value.ship) {
+        classNames.push(styles.ship)
+    }
+
+    return (
+        <div
+            className={classNames.join(' ')}
+            onClick={onClick} />
+    )
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        hit: state.game.grid ? state.game.grid[ownProps.x][ownProps.y].hit : false
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        hitCell: (x, y, ship) => {
-            dispatch(hitCell({ x, y, ship }))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Cell)
+export default Cell

@@ -1,3 +1,3 @@
-export Grid from './Grid'
+export Cell from './Cell'
 export ShipInfo from './ShipInfo'
-export GameStatusHandler from './GameStatusHandler'
+export VictoryPopup from './VictoryPopup'

@@ -6,6 +6,14 @@ const path = require('path')
 module.exports = {
     resolve: {
         extensions: ['*', '.js', '.jsx', '.json'],
+        alias: {
+            Styles: path.resolve(__dirname, './src/styles'),
+            Components: path.resolve(__dirname, './src/components'),
+            Containers: path.resolve(__dirname, './src/containers'),
+            Consts: path.resolve(__dirname, './src/consts'),
+            Actions: path.resolve(__dirname, './src/actions'),
+            Utils: path.resolve(__dirname, './src/utils')
+        }
     },
     entry: [
         './src/webpack-public-path',

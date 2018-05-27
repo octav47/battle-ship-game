@@ -1,5 +1,6 @@
 import deepClone from 'deepcloneobject'
-import { getShips } from '../utils/ships'
+import { INIT_SHIPS, HIT_CELL } from 'Consts/gameConsts'
+import { getShips } from 'Utils/ships'
 
 const initialState = {
     width: 10,
@@ -14,7 +15,7 @@ const initialState = {
 export default function gameReducer (state = initialState, action) {
     const { type, payload } = action
 
-    if (type === 'INIT_SHIPS') {
+    if (type === INIT_SHIPS) {
         const { width, height } = payload
         const grid = []
 
@@ -42,7 +43,7 @@ export default function gameReducer (state = initialState, action) {
         }
     }
 
-    if (type === 'HIT_CELL') {
+    if (type === HIT_CELL) {
         const { x, y, ship } = payload
         const newState = deepClone(state)
         const { grid } = newState

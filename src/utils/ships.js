@@ -38,8 +38,6 @@ const getEmptyBlock = ({ grid, width, height, size }) => {
         }
     }
 
-    console.log('emptyBlocks', emptyBlocks)
-
     if (emptyBlocks.length === 0) {
         throw 'empty blocks not found'
     }
@@ -73,7 +71,6 @@ const getIBlock = ({ grid, width, height }) => {
 }
 
 const getLBlock = ({ grid, width, height }) => {
-    console.group('getLBlock')
     const direction = getRandomInt(0, 100) > 50 ? 0 : 1 // 0 -- ver, 1 -- hor
     const size = direction ? [4, 5] : [5, 4]
     const emptyBlock = getEmptyBlock({ grid, width, height, size })
@@ -120,8 +117,6 @@ const getLBlock = ({ grid, width, height }) => {
         ...grid[endPoint[0]][endPoint[1]],
         ship: 'L',
     }
-
-    console.groupEnd()
 
     return { grid, area }
 }

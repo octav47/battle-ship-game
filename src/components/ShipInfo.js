@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import styles from './styles/ShipInfo.sass'
+import styles from 'Styles/ShipInfo.sass'
 
 const ShipInfo = props => {
     const {

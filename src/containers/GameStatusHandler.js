@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { initShips } from '../actions/shipActions'
-
-import styles from './styles/GameStatusHandler.sass'
+import { initShips } from 'Actions/shipActions'
+import { VictoryPopup } from 'Components/'
 
 class GameStatusHandler extends React.Component {
     handleRestartGame = () => {
@@ -19,16 +18,7 @@ class GameStatusHandler extends React.Component {
         }
 
         return (
-            <div className={styles.popupContainer}>
-                <div className={styles.popup}>
-                    <div className={styles.title}>
-                        Victory!
-                    </div>
-                    <button onClick={this.handleRestartGame}>
-                        Restart
-                    </button>
-                </div>
-            </div>
+            <VictoryPopup onRestart={this.handleRestartGame} />
         )
     }
 }

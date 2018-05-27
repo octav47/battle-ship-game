@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Cell from './Cell'
-import { initShips } from '../actions/shipActions'
+import { CellContainer } from 'Containers'
+import { initShips } from 'Actions/shipActions'
 
 class Grid extends React.Component {
     componentWillMount () {
@@ -13,8 +13,6 @@ class Grid extends React.Component {
     render () {
         const { width, height, grid } = this.props
 
-        console.log(grid)
-
         const rows = []
 
         for (let i = 0; i < height; i++) {
@@ -22,7 +20,7 @@ class Grid extends React.Component {
 
             for (let j = 0; j < width; j++) {
                 row.push(
-                    <Cell
+                    <CellContainer
                         key={j}
                         x={i}
                         y={j}
