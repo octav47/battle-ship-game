@@ -6,10 +6,8 @@ import rootReducer from './reducers/rootReducer.js'
 function configureStoreProd(initialState) {
     const middlewares = []
 
-    const store = createStore(rootReducer, initialState, compose(
+    return createStore(rootReducer, initialState, compose(
         applyMiddleware(...middlewares)))
-
-    return store
 }
 
 function configureStoreDev(initialState) {

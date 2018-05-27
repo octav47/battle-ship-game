@@ -5,8 +5,6 @@ import Root from './Root'
 
 import configureStore from './store'
 
-// require('./favicon.ico') // Tell webpack to load favicon.ico
-
 const store = configureStore()
 
 render(
