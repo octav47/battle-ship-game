@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { CellContainer } from 'Containers'
 import { initShips } from 'Actions/shipActions'
@@ -24,7 +25,7 @@ class Grid extends React.Component {
                         key={j}
                         x={i}
                         y={j}
-                        value={grid && grid[i][j]}/>,
+                        value={grid && grid[i][j]} />,
                 )
             }
 
@@ -37,6 +38,13 @@ class Grid extends React.Component {
 
         return rows
     }
+}
+
+Grid.propTypes = {
+    width: PropTypes.number,
+    height: PropTypes.number,
+    grid: PropTypes.array,
+    init: PropTypes.func,
 }
 
 const mapStateToProps = state => {
