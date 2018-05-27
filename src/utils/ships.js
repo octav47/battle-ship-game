@@ -1,10 +1,8 @@
-import { getRandomInt } from './customUtils'
+import { getRandomInt } from 'Utils/customUtils'
 
 const directions = [[0, -1], [1, 0], [0, 1], [-1, 0]] // top right bottom left
 
 const getEmptyBlock = ({ grid, width, height, size }) => {
-    console.log(height - size[0] - 1)
-
     if (!Array.isArray(size)) {
         size = [size, size]
     }
