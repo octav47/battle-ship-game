@@ -5,9 +5,9 @@ import { initShips } from 'Actions/shipActions'
 
 class Grid extends React.Component {
     componentWillMount () {
-        const { width, height, initShips } = this.props
+        const { init } = this.props
 
-        initShips(width, height)
+        init()
     }
 
     render () {
@@ -47,12 +47,19 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = (dispatch, ...args) => {
+const mergeProps = (stateProps, { dispatch }) => {
+    const { width, height, grid } = stateProps
+
+    const init = () => {
+        dispatch(initShips(width, height))
+    }
+
     return {
-        initShips: (width, height) => {
-            dispatch(initShips(width, height))
-        },
+        width,
+        height,
+        grid,
+        init,
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Grid)
+export default connect(mapStateToProps, null, mergeProps)(Grid)
